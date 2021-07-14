@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  WSDL contract for ForkExec Points.
+
+  This WSDL defines the operations provided by the Web Service.
+  For more information, see sections
+  wsdl:service, wsdl:portType, wsdl:types and wsdl:binding below
+-->
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws.pts.forkexec.com/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PointsService" targetNamespace="http://ws.pts.forkexec.com/">
+
+  <!--  XML Schema Definition (XSD) of data types. -->
+  <types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ws.pts.forkexec.com/" version="1.0">
+      <xs:element name="EmailAlreadyExistsFault" type="tns:EmailAlreadyExistsFault" />
+      <xs:element name="addUser" type="tns:addUser" />
+      <xs:element name="addUserResponse" type="tns:addUserResponse" />
+      <xs:element name="setPoints" type="tns:setPoints" />
+      <xs:element name="setPointsResponse" type="tns:setPointsResponse" />
+      <xs:element name="ctrlClear" type="tns:ctrlClear" />
+      <xs:element name="ctrlClearResponse" type="tns:ctrlClearResponse" />
+      <xs:element name="ctrlInit" type="tns:ctrlInit" />
+      <xs:element name="ctrlInitResponse" type="tns:ctrlInitResponse" />
+      <xs:element name="ctrlPing" type="tns:ctrlPing" />
+      <xs:element name="ctrlPingResponse" type="tns:ctrlPingResponse" />
+      <xs:element name="getPoints" type="tns:getPoints" />
+      <xs:element name="getPointsResponse" type="tns:getPointsResponse" />
+      <xs:element name="getStartPoints" type="tns:getStartPoints" />
+      <xs:element name="getStartPointsResponse" type="tns:getStartPointsResponse" />
+      <xs:complexType name="ctrlClear">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="ctrlClearResponse">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="setPoints">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="user" type="xs:string" />
+          <xs:element name="points" type="tns:QCint" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="setPointsResponse">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="addUser">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="user" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addUserResponse">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="EmailAlreadyExistsFault">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getPoints">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="user" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getPointsResponse">
+        <xs:sequence>
+          <xs:element name="return" type="tns:QCint" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getStartPoints">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="getStartPointsResponse">
+        <xs:sequence>
+          <xs:element name="return" type="tns:QCint" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="QCint">
+        <xs:sequence>
+          <xs:element name="sequence" type="xs:int" />
+          <xs:element name="value" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ctrlPing">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="input" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ctrlPingResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ctrlInit">
+        <xs:sequence>
+          <xs:element name="startPoints" type="tns:QCint" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ctrlInitResponse">
+        <xs:sequence />
+      </xs:complexType>
+    </xs:schema>
+  </types>
+
+  <!--  Messages use elements defined in the schema. -->
+  <message name="ctrlPing">
+    <part element="tns:ctrlPing" name="parameters" />
+  </message>
+  <message name="ctrlPingResponse">
+    <part element="tns:ctrlPingResponse" name="parameters" />
+  </message>
+  <message name="getPoints">
+    <part element="tns:getPoints" name="parameters" />
+  </message>
+  <message name="getPointsResponse">
+    <part element="tns:getPointsResponse" name="parameters" />
+  </message>
+  <message name="getStartPoints">
+    <part element="tns:getStartPoints" name="parameters" />
+  </message>
+  <message name="getStartPointsResponse">
+    <part element="tns:getStartPointsResponse" name="parameters" />
+  </message>
+  <message name="addUser">
+    <part element="tns:addUser" name="parameters" />
+  </message>
+  <message name="addUserResponse">
+    <part element="tns:addUserResponse" name="parameters" />
+  </message>
+  <message name="EmailAlreadyExistsFault">
+    <part element="tns:EmailAlreadyExistsFault" name="fault" />
+  </message>
+  <message name="ctrlInit">
+    <part element="tns:ctrlInit" name="parameters" />
+  </message>
+  <message name="ctrlInitResponse">
+    <part element="tns:ctrlInitResponse" name="parameters" />
+  </message>
+  <message name="ctrlClear">
+    <part element="tns:ctrlClear" name="parameters" />
+  </message>
+  <message name="ctrlClearResponse">
+    <part element="tns:ctrlClearResponse" name="parameters" />
+  </message>
+  <message name="setPoints">
+    <part element="tns:setPoints" name="parameters" />
+  </message>
+  <message name="setPointsResponse">
+    <part element="tns:setPointsResponse" name="parameters" />
+  </message>
+
+  <!--  Port type (interface). -->
+  <!--  Each operation has input, output and fault messages. -->
+  <portType name="PointsPortType">
+    <operation name="ctrlPing">
+      <input message="tns:ctrlPing" wsam:Action="http://ws.pts.forkexec.com/PointsPortType/ctrlPingRequest" />
+      <output message="tns:ctrlPingResponse" wsam:Action="http://ws.pts.forkexec.com/PointsPortType/ctrlPingResponse" />
+    </operation>
+    <operation name="getPoints">
+      <input message="tns:getPoints" wsam:Action="http://ws.pts.forkexec.com/PointsPortType/getPointsRequest" />
+      <output message="tns:getPointsResponse" wsam:Action="http://ws.pts.forkexec.com/PointsPortType/getPointsResponse" />
+    </operation>
+    <operation name="getStartPoints">
+      <input message="tns:getStartPoints" wsam:Action="http://ws.pts.forkexec.com/PointsPortType/getStartPointsRequest" />
+      <output message="tns:getStartPointsResponse" wsam:Action="http://ws.pts.forkexec.com/PointsPortType/getStartPointsResponse" />
+    </operation>
+    <operation name="addUser">
+      <input message="tns:addUser" wsam:Action="http://ws.pts.forkexec.com/PointsPortType/addUserRequest" />
+      <output message="tns:addUserResponse" wsam:Action="http://ws.pts.forkexec.com/PointsPortType/addUserResponse" />
+      <fault message="tns:EmailAlreadyExistsFault" name="EmailAlreadyExistsFault" wsam:Action="http://ws.pts.forkexec.com/PointsPortType/addUser/Fault/EmailAlreadyExistsFault" />
+    </operation>
+    <operation name="ctrlInit">
+      <input message="tns:ctrlInit" wsam:Action="http://ws.pts.forkexec.com/PointsPortType/ctrlInitRequest" />
+      <output message="tns:ctrlInitResponse" wsam:Action="http://ws.pts.forkexec.com/PointsPortType/ctrlInitResponse" />
+    </operation>
+    <operation name="ctrlClear">
+      <input message="tns:ctrlClear" wsam:Action="http://ws.pts.forkexec.com/PointsPortType/ctrlClearRequest" />
+      <output message="tns:ctrlClearResponse" wsam:Action="http://ws.pts.forkexec.com/PointsPortType/ctrlClearResponse" />
+    </operation>
+    <operation name="setPoints">
+      <input message="tns:setPoints" wsam:Action="http://ws.pts.forkexec.com/PointsPortType/setPointsRequest" />
+      <output message="tns:setPointsResponse" wsam:Action="http://ws.pts.forkexec.com/PointsPortType/setPointsResponse" />
+    </operation>
+  </portType>
+
+  <!--  Binding defines the actual technologies to use. -->
+  <binding name="PointsPortBinding" type="tns:PointsPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="ctrlPing">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getPoints">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getStartPoints">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="addUser">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="EmailAlreadyExistsFault">
+        <soap:fault name="EmailAlreadyExistsFault" use="literal" />
+      </fault>
+    </operation>
+    <operation name="ctrlInit">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ctrlClear">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="setPoints">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+
+  <!--  Service defines ports. -->
+  <!--  Each port is an abstract port type, made concrete by a binding. -->
+  <service name="PointsService">
+    <port binding="tns:PointsPortBinding" name="PointsPort">
+      <soap:address location="http://forkexec.com:8091/points" />
+    </port>
+  </service>
+</definitions>

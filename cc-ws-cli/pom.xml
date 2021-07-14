@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.forkexec.T28</groupId>
+		<artifactId>ForkExec</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>cc-ws-cli</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>${project.artifactId}</name>
+
+
+	<properties>
+		<!-- see parent POM for more properties -->
+
+		<ws.host>http://ws.sd.rnl.tecnico.ulisboa.pt</ws.host>
+		<!-- instance number -->
+		<ws.i>1</ws.i>
+
+		<ws.name>${cc.ws.name}</ws.name>
+		<ws.port>8080</ws.port>
+
+		<ws.url>http://${ws.host}:${ws.port}/cc</ws.url>
+
+		<wsdl.dir>${basedir}/../cc-contract/</wsdl.dir>
+	</properties>
+
+	<dependencies>
+		<!-- JAX-WS -->
+		<dependency>
+			<groupId>com.sun.xml.ws</groupId>
+			<artifactId>jaxws-rt</artifactId>
+			<version>${version.jaxws-rt}</version>
+		</dependency>
+		<!-- UDDI Naming -->
+		<dependency>
+			<groupId>pt.ulisboa.tecnico.sdis</groupId>
+			<artifactId>uddi-naming</artifactId>
+			<version>${version.uddi-naming}</version>
+		</dependency>
+		<!-- JUnit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>${version.maven-resources-plugin}</version>
+				<configuration>
+					<nonFilteredFileExtensions>
+						<nonFilteredFileExtension>jks</nonFilteredFileExtension>
+					</nonFilteredFileExtensions>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxws-maven-plugin</artifactId>
+				<version>${version.jaxws-maven-plugin}</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.sun.xml.ws</groupId>
+						<artifactId>jaxws-tools</artifactId>
+						<version>${version.jaxws-tools}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<!-- http://www.mojohaus.org/jaxws-maven-plugin/wsimport-mojo.html -->
+					<wsdlDirectory>${wsdl.dir}</wsdlDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>wsimport</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.19.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>${wsdl.dir}</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+	</build>
+</project>
