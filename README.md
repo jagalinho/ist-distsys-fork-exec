@@ -1,7 +1,5 @@
 # ForkExec
 
-IST Distributed Systems 2018-2019, Prof. João Pedro Barreto
-
 ## Authors
 
 | Name                  | Github
